@@ -100,8 +100,14 @@ namespace FiorelloBackend.Controllers
                 ModelState.AddModelError(string.Empty, "Email or password is wrong");
                 return View(request);
             }
-            
-            await _signInManager.SignInAsync(existUser, false);
+
+            var res = await _signInManager.PasswordSignInAsync(existUser, request.Password, false, false);
+
+            if (res.IsNotAllowed)
+            {
+                ModelState.AddModelError(string.Empty, "Please check your email for comfirmation");
+                return View(request);
+            }
 
             return RedirectToAction("Index", "Home");
         }

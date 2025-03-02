@@ -1,6 +1,7 @@
 ﻿using FiorelloBackend.Areas.Admin.ViewModels.Account;
 using FiorelloBackend.Helpers.Enums;
 using FiorelloBackend.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 namespace FiorelloBackend.Areas.Admin.Controllers
 {
     [Area("Admin")]
+   
     public class AccountController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
@@ -22,6 +24,7 @@ namespace FiorelloBackend.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,SuperAdmin")]
         public async Task<IActionResult> Index()
         {
             var users = await _userManager.Users.ToListAsync();
@@ -42,6 +45,13 @@ namespace FiorelloBackend.Areas.Admin.Controllers
             }
 
             return View(userWithRoles);
+        }
+
+        [Authorize(Roles = "SuperAdmin")]
+        [HttpGet]
+        public async Task<IActionResult> AddRoleToUser()
+        {
+            return View();
         }
 
 

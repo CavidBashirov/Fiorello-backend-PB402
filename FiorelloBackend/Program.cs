@@ -29,9 +29,11 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequiredLength = 6;
     options.Password.RequiredUniqueChars = 1;
 
+    options.SignIn.RequireConfirmedEmail = true;
 
     // User settings.
     options.User.RequireUniqueEmail = true;
+   
 });
 
 builder.Services.AddScoped<ISliderService, SliderService>();

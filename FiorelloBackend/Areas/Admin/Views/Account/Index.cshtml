@@ -41,7 +41,10 @@
                             @string.Join(",", item.Roles)
                         </td>
                         <td>
-                            <a class="btn btn-success btn-rounded btn-fw">Add role</a>
+                            @if (User.IsInRole("SuperAdmin"))
+                            {
+                                <a asp-action="AddRoleToUser" class="btn btn-success btn-rounded btn-fw">Add role</a>
+                            }
                             <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline">
                                 <button type="submit" class="btn btn-danger btn-rounded btn-fw">Delete</button>
                             </form>

@@ -2,12 +2,14 @@
 using FiorelloBackend.Data;
 using FiorelloBackend.Helpers.Extensions;
 using FiorelloBackend.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace FiorelloBackend.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin,SuperAdmin")]
     public class SliderController : Controller
     {
         private readonly AppDbContext _context;
