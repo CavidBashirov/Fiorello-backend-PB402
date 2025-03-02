@@ -1,0 +1,12 @@
+﻿@model CategoryEditVM
+<div class="container mt-5">
+    <form class="forms-sample" method="post" asp-action="Edit">
+        <div class="form-group">
+            <label for="name">Category name</label>
+            <input type="text" class="form-control" id="name" asp-for="Name" maxlength="1000">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary me-2 text-white">Submit</button>
+        <a asp-action="Index" class="btn btn-light">Cancel</a>
+    </form>
+</div>

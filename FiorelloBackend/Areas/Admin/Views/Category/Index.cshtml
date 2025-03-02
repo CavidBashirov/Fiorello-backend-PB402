@@ -1,0 +1,44 @@
+﻿@model IEnumerable<CategoryVM>
+<div class="container-fluid mt-3">
+    <h2 class="mt-2 text-center">Categories</h2>
+    <div class="table-responsive mt-3">
+        <a asp-action="Create" class="btn btn-success btn-rounded btn-fw">Create</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                   
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Has products
+                    </th>
+                    <th>
+                       Options
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+              @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.Name
+                        </td>
+                        <td>
+                            @(item.HasProduct ? "Yes" : "No")
+                        </td>
+                        <td>
+                            <a asp-action="Detail" asp-route-id="@item.Id" class="btn btn-info btn-rounded btn-fw">Detail</a>
+                            <a asp-action="Edit" asp-route-id="@item.Id" as class="btn btn-primary btn-rounded btn-fw">Edit</a>
+                            <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline">
+                                <button type="submit" class="btn btn-danger btn-rounded btn-fw">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+                
+            </tbody>
+        </table>
+    </div>
+</div>

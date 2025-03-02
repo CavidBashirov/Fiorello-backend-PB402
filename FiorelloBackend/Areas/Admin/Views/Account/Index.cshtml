@@ -1,0 +1,55 @@
+﻿@model IEnumerable<UserRolesDto>
+<div class="container-fluid mt-3">
+    <h2 class="mt-2 text-center">Users</h2>
+    <div class="table-responsive mt-3">
+       
+        <table class="table table-striped">
+            <thead>
+                <tr>
+
+                    <th>
+                        FullName
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Username
+                    </th>
+                    <th>
+                        Roles
+                    </th>
+                    <th>
+                        Options
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.FullName
+                        </td>
+                        <td>
+                            @item.Email
+                        </td>
+                        <td>
+                            @item.UserName
+                        </td>
+                        <td>
+                            @string.Join(",", item.Roles)
+                        </td>
+                        <td>
+                            <a class="btn btn-success btn-rounded btn-fw">Add role</a>
+                            <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline">
+                                <button type="submit" class="btn btn-danger btn-rounded btn-fw">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

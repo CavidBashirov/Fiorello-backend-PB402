@@ -1,0 +1,47 @@
+﻿@model BasketDetailVM
+<div class="container mt-5">
+
+    <div class="alert alert-warning cart-empty-alert @(Model.Products.Count<1 ? "":"d-none")" role="alert">
+            Basket empty
+    </div>
+
+
+    <div class="cart-area @(Model.Products.Count < 1 ? "d-none":"")">
+            <h1 class="text-center">Products</h1>
+            <div class="cart-table mt-4">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Image</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Count</th>
+                            <th scope="col">Category</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (KeyValuePair<ProductDetailVM, int> item in Model.Products)
+                        {
+                            <tr>
+                                <td> <img src="~/img/@item.Key.ProductImages.FirstOrDefault(m=>m.IsMain).Name" style="width:150px; height:100px" /></td>
+                                <td>@item.Key.Name</td>
+                                <td>@item.Key.Price</td>
+                                <td>@item.Value</td>
+                                <td>@item.Key.CategoryName</td>
+                                <td>
+                                    <button class="btn btn-danger delete-basket-item" data-id="@item.Key.Id">Delete</button>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="total">
+                <h2>Total: <span>@Model.Total</span> azn</h2>
+            </div>
+            </div>
+
+   
+</div>

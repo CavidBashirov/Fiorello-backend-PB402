@@ -1,0 +1,14 @@
+﻿@model SliderEditVM
+<div class="container mt-5">
+    <div class="image">
+        <img src="~/img/@Model.ExistImage" style="width:300px; height:200px" />
+    </div>
+    <form class="forms-sample mt-5" method="post" asp-action="Edit" enctype="multipart/form-data">
+        <div class="form-group">
+            <input class="form-control" id="name" asp-for="UploadImage">
+            <span asp-validation-for="UploadImage" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary me-2 text-white">Submit</button>
+        <a asp-action="Index" class="btn btn-light">Cancel</a>
+    </form>
+</div>
